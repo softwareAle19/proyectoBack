@@ -19,5 +19,34 @@ namespace BackForoP.Controllers
             var listaDocentes = await funcion.listarDocentesSP();
             return Ok(listaDocentes);
         }
+
+
+        [HttpPost("BuscarDocente")]
+        public async Task<IActionResult> BuscarPorNombre([FromBody] UsuarioE usu)
+        {
+            if (string.IsNullOrWhiteSpace(usu.nombre))
+            {
+                return BadRequest("El nombre de usuario no puede estar vacío");
+            }
+
+            var funcion = new DocenteD();
+            var listaDocentes = await funcion.listarDocentesSP();
+
+            var nombreBusqueda = usu.nombre.ToLower(); // Convertir el nombre de búsqueda a minúsculas
+
+            var docentesEncontrados = listaDocentes.Where(docente => docente.nombre.ToLower().Contains(nombreBusqueda)).ToList();
+
+            if (docentesEncontrados.Any())
+            {
+                return Ok(docentesEncontrados);
+            }
+            else
+            {
+                return NotFound("Docente no encontrado");
+            }
+        }
+
     }
+
 }
+

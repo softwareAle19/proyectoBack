@@ -31,3 +31,4 @@ C:\Users\henry\source\repos\BackForoP\BackForoP\obj\Debug\net6.0\refint\BackForo
 C:\Users\henry\source\repos\BackForoP\BackForoP\obj\Debug\net6.0\BackForoP.pdb
 C:\Users\henry\source\repos\BackForoP\BackForoP\obj\Debug\net6.0\BackForoP.genruntimeconfig.cache
 C:\Users\henry\source\repos\BackForoP\BackForoP\obj\Debug\net6.0\ref\BackForoP.dll
+C:\Users\henry\source\repos\BackForoP\BackForoP\obj\Debug\net6.0\BackForoP.sourcelink.json
