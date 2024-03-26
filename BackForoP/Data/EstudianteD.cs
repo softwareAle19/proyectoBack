@@ -24,7 +24,7 @@ namespace BackForoP.Data
                         while (await item.ReadAsync())
                         {
                             UsuarioE usuario = new UsuarioE();
-
+                            usuario.idUsuario = item["idUsuario"] is int ? (int)item["idUsuario"] : 0;
                             usuario.documento = item["documento"] != DBNull.Value ? (string)item["documento"] : null;
                             usuario.nombre = item["nombre"] != DBNull.Value ? (string)item["nombre"] : null;
                             usuario.apellido = item["apellido"] != DBNull.Value ? (string)item["apellido"] : null;

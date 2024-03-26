@@ -39,12 +39,15 @@ namespace BackForoP.Controllers
 
             var listaUsuarios = await usuarioDatos.listarUsuariosSP();
 
-            var usuario = listaUsuarios.FirstOrDefault(u => u.email == usu.email && u.password == usu.password);
+            // Buscar al usuario por correo electrónico en la lista de usuarios
+            var usuario = listaUsuarios.FirstOrDefault(u => u.email == usu.email);
 
-            if (usuario != null)
+            // Verificar si se encontró un usuario y si la contraseña coincide
+            if (usuario != null && usuario.password == usu.password)
             {
                 var usuarioInfo = new UsuarioE
                 {
+                    idUsuario = usuario.idUsuario,
                     documento = usuario.documento,
                     nombre = usuario.nombre,
                     apellido = usuario.apellido,
@@ -56,6 +59,7 @@ namespace BackForoP.Controllers
                 return Ok(usuarioInfo);
             }
 
+            // Devolver una respuesta 401 Unauthorized si las credenciales son inválidas
             return Unauthorized("Credenciales inválidas");
         }
 

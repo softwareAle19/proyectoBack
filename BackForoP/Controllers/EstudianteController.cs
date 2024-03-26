@@ -12,7 +12,7 @@ namespace BackForoP.Controllers
     [ApiController]
     public class EstudianteController : ControllerBase
     {
-
+       
         [HttpGet("ListarEstudiantes")]
         public async Task<ActionResult<List<UsuarioE>>> ListarEstudiantes()
         {
