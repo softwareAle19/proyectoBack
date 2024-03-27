@@ -20,5 +20,12 @@ namespace BackForoP.Controllers
             return Ok(listaForos);
         }
 
+        [HttpGet("ListarForosPorEstudiante")]
+        public async Task<ActionResult<List<ForoE>>> ListarForosPorEstudiante([FromBody] UsuarioE usu)
+        {
+            var funcion = new ForoD();
+            var listaForos = await funcion.listaForosPorEstudiante(usu.idUsuario);
+            return Ok(listaForos);
+        }
     }
 }

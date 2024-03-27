@@ -16,5 +16,13 @@ namespace BackForoP.Controllers
             var listaCursos = await funcion.listarCursosPorDocente(usu.idUsuario);
             return Ok(listaCursos);
         }
+
+        [HttpGet("ListarCursosPorAdmin")]
+        public async Task<ActionResult<List<CursoE>>> ListarCursosPorAdmin()
+        {
+            var funcion = new CursoD();
+            var listaCursos = await funcion.listarCursosPorAdmin();
+            return Ok(listaCursos);
+        }
     }
 }

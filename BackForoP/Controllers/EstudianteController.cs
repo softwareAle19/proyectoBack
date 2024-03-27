@@ -21,6 +21,14 @@ namespace BackForoP.Controllers
             return Ok(listaEstudiantes);
         }
 
+        [HttpGet("ListarEstudiantesPorCurso")]
+        public async Task<ActionResult<List<UsuarioE>>> ListarEstudiantesPorCurso([FromBody] CursoE curso)
+        {
+            var funcion = new EstudianteD();
+            var listaEstudiantes = await funcion.listarEstudiantesPorCurso(curso.idCurso);
+            return Ok(listaEstudiantes);
+        }
+
         [HttpPost("BuscarEstudiante")]
         public async Task<IActionResult> BuscarPorNombre([FromBody] UsuarioE usu)
         {
