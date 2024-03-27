@@ -11,16 +11,14 @@ namespace BackForoP.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class ForoController : ControllerBase
-    {        
+    {
         [HttpGet("ListarForosPorDocente")]
         public async Task<ActionResult<List<ForoE>>> ListarForosPorDocente([FromBody] UsuarioE usu)
         {
             var funcion = new ForoD();
-            var listaForos = await funcion.listarForosPorDocente(usu.idUsuario);
+            var listaForos = await funcion.listaForosPorDocente(usu.idUsuario);
             return Ok(listaForos);
         }
-
-
 
     }
 }

@@ -9,8 +9,8 @@ namespace BackForoP.Controllers
     [ApiController]
     public class CursoController : ControllerBase
     {
-        [HttpGet("ListarCursos")]
-        public async Task<ActionResult<List<CursoE>>> ListarCursos([FromBody] UsuarioE usu)
+        [HttpGet("ListarCursosPorDocente")]
+        public async Task<ActionResult<List<CursoE>>> ListarCursosPorDocente([FromBody] UsuarioE usu)
         {
             var funcion = new CursoD();
             var listaCursos = await funcion.listarCursosPorDocente(usu.idUsuario);

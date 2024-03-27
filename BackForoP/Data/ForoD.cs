@@ -8,7 +8,7 @@ namespace BackForoP.Data
     {
         ConexionBD conexion = new ConexionBD();
 
-        public async Task<List<ForoE>> listarForosPorDocente(int idUsuario)
+        public async Task<List<ForoE>> listaForosPorDocente(int idUsuario)
         {
             List<ForoE> listaForos = new List<ForoE>();
 
