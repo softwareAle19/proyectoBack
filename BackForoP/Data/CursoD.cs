@@ -8,7 +8,7 @@ namespace BackForoP.Data
     {
         ConexionBD conexion = new ConexionBD();
 
-        public async Task<List<CursoE>> listarCursos()
+        public async Task<List<CursoE>> listarCursosPorDocente(int idUsuario)
         {
             List<CursoE> listaCursos = new List<CursoE>();
 
@@ -18,6 +18,7 @@ namespace BackForoP.Data
                 {
                     await cadenaSQL.OpenAsync();
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
 
                     using (var item = await cmd.ExecuteReaderAsync())
                     {

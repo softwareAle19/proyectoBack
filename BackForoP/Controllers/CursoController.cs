@@ -10,10 +10,10 @@ namespace BackForoP.Controllers
     public class CursoController : ControllerBase
     {
         [HttpGet("ListarCursos")]
-        public async Task<ActionResult<List<CursoE>>> ListarCursos()
+        public async Task<ActionResult<List<CursoE>>> ListarCursos([FromBody] UsuarioE usu)
         {
             var funcion = new CursoD();
-            var listaCursos = await funcion.listarCursos();
+            var listaCursos = await funcion.listarCursosPorDocente(usu.idUsuario);
             return Ok(listaCursos);
         }
     }
