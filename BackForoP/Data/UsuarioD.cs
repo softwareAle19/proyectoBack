@@ -75,5 +75,32 @@ namespace BackForoP.Data
 
         }
 
+        public async Task<int> editarUsuarios(int idUsuario, string documento, string nombre, string apellido, string email, string password, byte[] imagen)
+        {
+
+            int filasAfectadas = 0;
+
+            using (var cadenaSQL = new SqlConnection(conexion.cadenaSQL()))
+            {
+                using (var cmd = new SqlCommand("sp_EditarUsuario", cadenaSQL))
+                {
+                    await cadenaSQL.OpenAsync();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@IdUsuario", idUsuario);
+                    cmd.Parameters.AddWithValue("@Documento", documento);
+                    cmd.Parameters.AddWithValue("@Nombre", nombre);
+                    cmd.Parameters.AddWithValue("@Apellido", apellido);
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    cmd.Parameters.AddWithValue("@Password", password);
+                    cmd.Parameters.AddWithValue("@Imagen", imagen);
+
+                    filasAfectadas = await cmd.ExecuteNonQueryAsync();
+                }
+            }
+
+            return filasAfectadas;
+        }
+
+
     }
 }     

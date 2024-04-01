@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BackForoP")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eab324253524016d51a3be8b88b116d1e8a2f8fb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a7c5e5b1cd0df899aa69d9474b634165b4d3823f")]
 [assembly: System.Reflection.AssemblyProductAttribute("BackForoP")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BackForoP")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

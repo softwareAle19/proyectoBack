@@ -28,7 +28,19 @@ namespace BackForoP.Controllers
             return Ok(listaUsuarios);
         }
 
+        [HttpPost("EditarUsuarios")]
+        public async Task<ActionResult<string>> EditarUsuarios([FromBody] UsuarioE usu)
+        {
+            int rst = await usuarioDatos.editarUsuarios(usu.idUsuario,usu.documento, usu.nombre, usu.apellido, usu.email, usu.password, usu.imagen);
+            if (rst != 0)
+            {
+                return Ok("Usuario Editado");
+            }
+            else
+            {
+                return BadRequest("No se pudo editar el usuario");
+            }
+        }
 
-       
     }
 }
