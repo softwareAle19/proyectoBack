@@ -68,7 +68,7 @@ namespace BackForoP.Controllers
         public async Task<IActionResult> EnviarContraseña([FromBody] UsuarioE usu)
         {
             // Verifico si el usuario existe y obtener su información
-            var usuario = await usuarioDatos.verificarId(usu.idUsuario);
+            var usuario = await usuarioDatos.verificarEmail(usu.email);
             if (usuario == null)
             {
                 return NotFound("Usuario no encontrado");
@@ -80,11 +80,7 @@ namespace BackForoP.Controllers
                 return BadRequest("La dirección de correo electrónico del usuario es inválida");
             }
 
-            // Valido que el correo proporcionado coincida con el correo asociado al usuario
-            if (usuario.email != usu.email)
-            {
-                return BadRequest("El correo proporcionado no coincide con el correo asociado al usuario");
-            }
+            
 
             // Obtener la contraseña del usuario
             var contraseña = usuario.password;

@@ -42,7 +42,7 @@ namespace BackForoP.Data
 
         }
 
-        public async Task<UsuarioE> verificarId(int id)
+        public async Task<UsuarioE> verificarEmail(string email)
         {
             UsuarioE usuario = new UsuarioE();
 
@@ -52,7 +52,7 @@ namespace BackForoP.Data
                 {
                     await cadenaSQL.OpenAsync();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@idUsuario", id);
+                    cmd.Parameters.AddWithValue("@email", email);
 
                     using (var item = await cmd.ExecuteReaderAsync())
                     {
