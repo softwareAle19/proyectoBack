@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
 using System.Data;
+using System.Net.Mail;
 
 namespace BackForoP.Controllers
 {
@@ -61,6 +62,59 @@ namespace BackForoP.Controllers
 
             // Devolver una respuesta 401 Unauthorized si las credenciales son inválidas
             return Unauthorized("Credenciales inválidas");
+        }
+
+        [HttpPost("EnviarContraseña")]
+        public async Task<IActionResult> EnviarContraseña([FromBody] UsuarioE usu)
+        {
+            // Verifico si el usuario existe y obtener su información
+            var usuario = await usuarioDatos.verificarId(usu.idUsuario);
+            if (usuario == null)
+            {
+                return NotFound("Usuario no encontrado");
+            }
+
+            // Valido que el correo proporcionado no esté vacío o nulo
+            if (string.IsNullOrWhiteSpace(usu.email))
+            {
+                return BadRequest("La dirección de correo electrónico del usuario es inválida");
+            }
+
+            // Valido que el correo proporcionado coincida con el correo asociado al usuario
+            if (usuario.email != usu.email)
+            {
+                return BadRequest("El correo proporcionado no coincide con el correo asociado al usuario");
+            }
+
+            // Obtener la contraseña del usuario
+            var contraseña = usuario.password;
+
+            try
+            {
+                // Mensaje de correo electrónico
+                MailMessage correo = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+                correo.From = new MailAddress("institucioncardenasgutierrez@gmail.com");
+                correo.To.Add(usu.email);
+                correo.Subject = "Recuperación de Contraseña";
+                correo.Body = "Tu contraseña es: " + contraseña; 
+                correo.IsBodyHtml = true;
+
+                // Conf el cliente SMTP
+                SmtpServer.Port = 587;
+                SmtpServer.Credentials = new System.Net.NetworkCredential("institucioncardenasgutierrez@gmail.com", "btbhlqdsgsqgitmf");
+                SmtpServer.EnableSsl = true;
+
+                // Envio el correo electrónico
+                SmtpServer.Send(correo);
+
+                return Ok("Correo electrónico enviado exitosamente");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error al enviar el correo electrónico: {ex.Message}");
+            }
         }
 
     }
