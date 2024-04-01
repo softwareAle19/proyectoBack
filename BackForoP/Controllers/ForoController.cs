@@ -12,7 +12,7 @@ namespace BackForoP.Controllers
     [ApiController]
     public class ForoController : ControllerBase
     {
-        [HttpGet("ListarForosPorDocente")]
+        [HttpPost("ListarForosPorDocente")]
         public async Task<ActionResult<List<ForoE>>> ListarForosPorDocente([FromBody] UsuarioE usu)
         {
             var funcion = new ForoD();
@@ -20,7 +20,7 @@ namespace BackForoP.Controllers
             return Ok(listaForos);
         }
 
-        [HttpGet("ListarForosPorEstudiante")]
+        [HttpPost("ListarForosPorEstudiante")]
         public async Task<ActionResult<List<ForoE>>> ListarForosPorEstudiante([FromBody] UsuarioE usu)
         {
             var funcion = new ForoD();
